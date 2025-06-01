@@ -2,6 +2,8 @@ import { Router, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { TasksController } from './tasks.controller';
 import { injectable, inject } from 'inversify';
+import { StatusCodes } from 'http-status-codes';
+
 import { ITask, IPartialTaskWithId } from './task.interface';
 import { createTaskValidator } from './validators/createTask.validator';
 import { getTasksValidator } from './validators/getTasks.validator';
@@ -40,9 +42,9 @@ export class TasksRouter {
         const result = validationResult(req);
         if (result.isEmpty()) {
           const newTask = await this.tasksController.handlePostTasks(req, res);
-          res.json(newTask);
+          res.status(StatusCodes.CREATED).json(newTask);
         } else {
-          res.json(result.array());
+          res.status(StatusCodes.BAD_REQUEST).json(result.array());
         }
       }
     );
