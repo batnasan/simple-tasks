@@ -1,8 +1,6 @@
 import { Container } from 'inversify';
-import { User } from '../user';
-import { Page } from '../page';
+import { TasksController } from '../tasks/tasks.controller';
 
 export const container: Container = new Container();
 
-container.bind(User).toSelf();
-container.bind(Page).toSelf();
+container.bind(TasksController).toSelf().inTransientScope();
