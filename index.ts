@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 
 import express, { Express } from 'express';
 import { addRoutes } from './src/config/routes.config';
+import { responseFormatter } from './src/middleware/responseFormatterr.middleware';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(responseFormatter);
 
 addRoutes(app);
 
