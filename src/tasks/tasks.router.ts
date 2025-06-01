@@ -4,6 +4,7 @@ import { TasksController } from './tasks.controller';
 import { injectable, inject } from 'inversify';
 import { ITask, IPartialTaskWithId } from './task.interface';
 import { createTaskValidator } from './validators/createTask.validator';
+import { getTasksValidator } from './validators/getTasks.validator';
 
 @injectable()
 export class TasksRouter {
@@ -17,10 +18,21 @@ export class TasksRouter {
   }
 
   private initializeRoutes() {
-    this.router.get('/', async (req: Request, res: Response) => {
-      const allTasks = await this.tasksController.handleGetTasks(req, res);
-      res.json(allTasks);
-    });
+    this.router.get(
+      '/',
+      getTasksValidator,
+      async (req: Request, res: Response) => {
+        const result = validationResult(req);
+        console.log(result);
+        console.log(req.query);
+        if (result.isEmpty()) {
+          const allTasks = await this.tasksController.handleGetTasks(req, res);
+          res.json(allTasks);
+        } else {
+          res.json(result.array());
+        }
+      }
+    );
     this.router.post(
       '/create',
       createTaskValidator,
