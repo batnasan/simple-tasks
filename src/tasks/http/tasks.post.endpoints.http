@@ -2,7 +2,6 @@ POST http://localhost:3001/tasks/create
 Content-Type: application/json
 
 {
-  "title": "Test title",
   "description": "Test description",
   "status": "todo",
   "priority": "normal",
