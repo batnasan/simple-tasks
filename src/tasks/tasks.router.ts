@@ -55,7 +55,7 @@ export class TasksRouter {
           req,
           res
         );
-        res.json(updatedTask);
+        res.status(StatusCodes.OK).json(updatedTask);
       }
     );
   }
