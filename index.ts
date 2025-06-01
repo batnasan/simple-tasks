@@ -11,6 +11,8 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
+app.use(express.json());
+
 addRoutes(app);
 
 async function bootstrap() {
