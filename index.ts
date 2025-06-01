@@ -6,11 +6,19 @@ import * as dotenv from 'dotenv';
 import express, { Express } from 'express';
 import { addRoutes } from './src/config/routes.config';
 import { responseFormatter } from './src/middleware/responseFormatterr.middleware';
+import cors, { CorsOptions } from 'cors';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+
+// let corsOptions: CorsOptions = {
+//   origin: 'http://example.com',
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(responseFormatter);
