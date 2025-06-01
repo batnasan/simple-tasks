@@ -17,13 +17,9 @@ export class TasksController {
     return task;
   }
 
-  public handleGetTasks() {
-    return [
-      {
-        title: 'This is a title',
-        description: 'Task description',
-      },
-    ];
+  public async handleGetTasks(req: Request, res: Response) {
+    const tasks = await Task.find();
+    return tasks;
   }
 
   public handlePatchTasks() {
