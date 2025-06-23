@@ -11,7 +11,7 @@ import cors, { CorsOptions } from 'cors';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // let corsOptions: CorsOptions = {
 //   origin: 'http://example.com',
@@ -36,7 +36,7 @@ async function bootstrap() {
       dbName: process.env.DATABASE_NAME,
     });
 
-    console.log(`Connected to Montodb`);
+    console.log(`Connected to Mongodb`);
 
     app.listen(port, () => {
       console.log(`Server is running at http://localhost:${port}`);

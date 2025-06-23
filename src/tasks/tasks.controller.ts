@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'inversify';
 import { UserController } from '../user/user.controller';
-import { Task } from './task.schema';
 import { ITask, IPartialTaskWithId } from './task.interface';
 import { Document } from 'mongoose';
 import { TaskService } from './tasks.service';
